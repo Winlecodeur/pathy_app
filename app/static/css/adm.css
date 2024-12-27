@@ -315,6 +315,11 @@ body{
         margin-left: 0;
         justify-content: center;
     }
+.link{
+font-size:11ps}
+.infos span {
+font-size:11px
+}
     .pub{
         grid-template-columns: repeat(1,1fr);
         margin-left: 0;
