@@ -1,3 +1,4 @@
+{% user.is_authenticated %}
 <!DOCTYPE html>{% load static  %}
 <html lang="en">
 <head>
@@ -307,3 +308,4 @@
 <script src="{% static 'js/homes.js' %}"></script>
 </body>
 </html>
+{% endif %}
