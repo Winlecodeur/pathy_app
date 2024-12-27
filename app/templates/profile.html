@@ -1,0 +1,173 @@
+{% if request.user.is_superuser %}
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href="{% url 'profile' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href="{% url 'agenda' %}"><img src="{% static 'img/icons8-calendrier-détachable-50.png' %}" alt="">Agenda </a></li>
+        <li  ><a href="{% url 'client' %}"><img src="{% static 'img/icons8-client-48.png' %}" alt="">vos clients </a></li>
+        <li  ><a href="{% url 'mannequin' %}"><img src="{% static 'img/icons8-robe-50.png' %}" alt="">Vos mannequins </a></li>
+        <li  ><a href="{% url 'reservation' %}"><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+       <li ><a href="{% url 'admin_message' user.id %}"><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li  ><a href="{% url 'infos' %}"><img src="{% static 'img/icons8-compte-30 (1).png' %}" alt="">informations générales</a></li>
+        <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+        <li ><a href="{% url 'add' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+        <li ><a href="{% url 'post' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+        <li ><a href="{% url 'logout_view' %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+       
+        <div class="profil">
+         <img src="{{profile.image.url}}"> {% if natifs %}
+         <a href="">
+             <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
+             <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+         </a>{% endif  %}
+     </div>
+    
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+    <a href="{% url 'reservation' %}"><img src="{% static 'img/icons8-réservation-64.png' %}" alt=""><div><h4>vos reservations quotidienne </h4> <span>consultez vos dernières reservations, le montant que vous pouvez gagner ou gagnerez <span></div> </a>
+    <a href="{% url 'post' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4> vos dernièrs post </h4> <span>consultez les performances de vos derniers posts, like, commentaires, partage que vos utilisateurs ont fait</span></div></a>
+    <a href="{% url 'send_newsletter' %}"><img src="{% static 'img/icons8-graphique-24.png' %}" alt=""> <div><h4> newsletter</h4> <span>envoyez des emails sur  l'evolution de vos articles, reservations et autres  </span></div> </a>
+
+</div>   
+<div class="pub">
+    <div class="pub-produit">
+        <h4>vos 4 derniers posts/performance</h4>
+      
+       {% for produit in posts  %}
+       <div class="produit">
+      <a href="{% url 'post_detail_profil' produit.id %}"> <img src="{{produit.image.url}}"><span>  <strong class="strong">{{produit.title}}</strong>  <strong class="str">  <img  id="img" src="{% static 'img/icons8-coeur-rempli-32 (1).png' %}"> {{produit.like.count}}</strong> </span>
+      </a>
+       </div>
+       {% endfor %}
+    </div>
+    <div class="pub-produit">
+        <h4>Les 4 derniers commentaires</h4>
+        {% for comment in comments %}
+        <div class="produit">
+            <a href="{% url 'post_detail' comment.post.id %}"><img src="{{comment.user.image.url}}"> <span style="width: 200px;word-break: break-all;">  {{comment.user.user.username}} {{comment.bio}} </span> </a>
+        </div>
+        {% endfor %}   
+    </div>
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% else %} 
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href="{% url 'profile' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href="{% url 'reservation_client' %}"><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+        <li ><a href="{% url 'messagerie' %}"><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+{% if profile.compte.name == 'mannequin' %}
+<li ><a href="{% url 'post_form_personnel'  %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+<li ><a href="{% url 'post_personnel' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+{% endif %}
+        <li ><a href="{% url 'logout_view'  %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+      
+       <div class="profil">
+        <img src="{{profile.image.url}}"> {% if natifs %}
+        <a href="">
+            <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
+            <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+        </a> {% endif %}
+    </div>
+   
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+  </section>
+ <aside class="aside">
+
+ {% if profile.compte.name == 'mannequin' %}<div class="nav">
+ <a href="{% url 'reservation' %}"><img src="{% static 'img/icons8-réservation-64.png' %}" alt=""><div><h4>vos reservations quotidienne </h4> <span>consultez vos dernières reservations, le montant que vous pouvez gagner ou gagnerez <span></div> </a>
+  
+  {% if  profile.compte.name == 'mannequin' %}   <a href="{% url 'post_personnel'  %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4> vos dernièrs post </h4> <span>consultez les performances de vos derniers posts, like, commentaires, partage que vos utilisateurs ont fait</span></div></a>
+  {% else %}   <a href="{% url 'home'  %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4> voir les posts </h4> <span>consultez les performances de vos derniers posts, like, commentaires, partage que vos utilisateurs ont fait</span></div></a>
+  {% endif %}
+    <a ><img src="{% static 'img/icons8-graphique-24.png' %}" alt=""> <div><h4> pannel administrative</h4> <span>consultez l'evolution de vos articles, reservations etautres grâce au pannel administrative</span></div> </a>
+</div>{% endif %}
+   
+<div class="pub">
+    <div class="pub-produit">
+        <h4>vos 4 derniers posts/performance</h4>
+      
+       {% for produit in posts  %}
+       <div class="produit">
+      <a href="{% url 'post_detail_personnel' produit.id %}"> <img src="{{produit.image.url}}"><span>  <strong class="strong">{{produit.title}}</strong>  <strong class="str">  <img  id="img" src="{% static 'img/icons8-coeur-rempli-32 (1).png' %}"> {{produit.like.count}}</strong> </span>
+      </a>
+       </div>
+       {% empty %}
+       <p> Aucune information n'est disponible, payez votre abonnement pour profiter de cette fonctnn</p>
+       {% endfor %}
+    </div>
+    <div class="pub-produit">
+        <h4>Les 4 derniers commentaires</h4>
+        {% for comment in clients %}
+        <div class="produit">
+            <a href="{% url 'post_detail' comment.post.id %}"><img src="{{comment.user.image.url}}"> <span style="width: 200px;word-break: break-all;">  {{comment.user.user.username}} {{comment.bio}} </span> </a>
+        </div>
+        {% endfor %}   
+    </div>
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% endif %}

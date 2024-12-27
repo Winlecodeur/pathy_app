@@ -1,0 +1,190 @@
+{% if request.user.is_superuser %} 
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/categorie_gestion.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/meta.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href=""><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-calendrier-détachable-50.png' %}" alt="">Agenda </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-client-48.png' %}" alt="">vos clients </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-robe-50.png' %}" alt="">Vos mannequins </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-budget-50.png' %}" alt="">Votre budget </a></li>
+        <li ><a href=""><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-compte-30 (1).png' %}" alt="">informations générales</a></li>
+        <li ><a href=""><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+        <li ><a href=""><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+        <li ><a href=""><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+        <li ><a href="" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+        <div class="profil">
+            <img src="{{profile.image.url}}">
+            <a href="">
+                <span>5</span>
+                <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+            </a>
+        </div>
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+    <a href="{% url 'post_form' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4>publier un post </h4> <span>En publiant un nouveau post cela rajoutera plus de performance dans votre application web <span></div> </a>
+    <a ><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt=""><div><h4> consulter chaque post </h4> <span>Consulter les performances de chaque post juste en cliquant sur l'image du post</span></div></a>
+    <a ><img src="{% static 'img/icons8-commentaire-50.png' %}" alt=""> <div><h4> consulter les commentaires</h4> Cliquer sur l'image ci-dessous pour consulter les performances de chaque commentaires, vous pouvez supprimer ou modifier un commentaire </span></div> </a>
+
+</div>   
+<div class="pub-stock">
+    <div class="pub-boutique">
+        <h4>vos publications  <form method="get" class="form2" action="{% url 'search_post' %}" id="search">
+          <input   placeholder="ex.c'est genial" name="q" value="{{query}}">
+          <button type="submit" ><img src="{% static 'img/icons8-chercher-50 (3).png' %}"></button>
+        </form></h4>
+        {% for post in resultats  %}
+        <div class="produit-boutique">
+       <a href="{% url 'post_detail_profil' post.id %}" class="a-produit"> <img src="{{post.image.url}}"> <strong class="strong-produit_2">{{post.title}}</strong>  <div class="produit-infos"> <strong class="str-boutique">  <img  id="img-boutique" src="{% static  'img/icons8-commentaire-50.png' %}"  > <span class="str-boutique-span"> {{post.comment.count}} </span>  <img src="{% static 'img/icons8-coeur-rempli-32 (1).png' %}" title="le nombre de like géneré par l'article"> <span class="str-boutique-span">{{post.like.count}}</span> </strong> <a href="{% url 'post_modif' post.id %}" class="modif-boutique" title="modifier les informations sur l'article"><img id="img-boutique" src="{% static 'img/icons8-registration-24.png' %}"></a> <a href="{% url 'post_delete' post.id %}" class="corbeil-boutique" title="supprimer definitivement l'article de votre boutique"><img id="img-boutique" src="{% static 'img/icons8-déchets-50 (1).png' %}"></a></div>
+       </a>
+        </div>
+        {% empty %}
+        <p style="display: flex;justify-content: center;margin-top: 5em;color: red;"> Pas d'informations : {{query}} </p>
+        {% endfor %}
+    </div>
+    <div class="pub-boutique">
+        <h4>vos commentaires  <form method="get" class="form2" action="{% url 'search_comment_post' %}">
+          <input   placeholder="ex.c'est genial" name="q" value="{{query}}">
+          <button type="submit" ><img src="{% static 'img/icons8-chercher-50 (3).png' %}"></button>
+        </form></h4>
+        {% for comment in comments  %}
+        <div class="produit-boutique">
+       <a href="{% url 'comment_post_detail' comment.id %}" class="a-produit"> <img src="{{comment.user.image.url}}"> <strong class="strong-produit_2">{{comment.user.user.username}}</strong>  <div class="produit-infos"> <strong class="str-boutique" >    <img src="{% static 'img/icons8-coeur-rempli-32 (1).png' %}" title="le nombre de like géneré par l'article"> <span class="str-boutique-span">{{comment.like.count}}</span> </strong> <a href="{% url 'comment_post_modif' comment.id %}" class="modif-boutique" title="modifier les informations sur l'article"><img id="img-boutique" src="{% static 'img/icons8-registration-24.png' %}"></a> <a href="{% url 'comment_post_delete' comment.id %}" class="corbeil-boutique" title="supprimer definitivement l'article de votre boutique"><img id="img-boutique" src="{% static 'img/icons8-déchets-50 (1).png' %}"></a></div>
+       </a>
+        </div>
+        {% empty %}
+        <p style="display: flex;justify-content: center;margin-top: 5em;"> Pas d'informations </p>
+        {% endfor %}
+    </div>
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% else %}
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/categorie_gestion.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/meta.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href=""><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-calendrier-détachable-50.png' %}" alt="">Agenda </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-client-48.png' %}" alt="">vos clients </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-robe-50.png' %}" alt="">Vos mannequins </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-budget-50.png' %}" alt="">Votre budget </a></li>
+        <li ><a href=""><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li  ><a href=""><img src="{% static 'img/icons8-compte-30 (1).png' %}" alt="">informations générales</a></li>
+        <li ><a href=""><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+        <li ><a href=""><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+        <li ><a href=""><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+        <li ><a href="" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+        <div class="profil">
+            <img src="{{profile.image.url}}">
+            <a href="">
+                <span>5</span>
+                <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+            </a>
+        </div>
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+    <a href="{% url 'post_form_personnel' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4>publier un post </h4> <span>En publiant un nouveau post cela rajoutera plus de performance dans votre application web <span></div> </a>
+    <a ><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt=""><div><h4> consulter chaque post </h4> <span>Consulter les performances de chaque post juste en cliquant sur l'image du post</span></div></a>
+    <a ><img src="{% static 'img/icons8-commentaire-50.png' %}" alt=""> <div><h4> consulter les commentaires</h4> Cliquer sur l'image ci-dessous pour consulter les performances de chaque commentaires, vous pouvez supprimer ou modifier un commentaire </span></div> </a>
+
+</div>   
+<div class="pub-stock">
+    <div class="pub-boutique">
+        <h4>vos publications  <form method="get" class="form2" action="{% url 'search_post' %}" id="search">
+          <input   placeholder="ex.c'est genial" name="q" value="{{query}}">
+          <button type="submit" ><img src="{% static 'img/icons8-chercher-50 (3).png' %}"></button>
+        </form></h4>
+        {% for post in resultats  %}
+        <div class="produit-boutique">
+       <a href="{% url 'post_detail_personnel' post.id %}" class="a-produit"> <img src="{{post.image.url}}"> <strong class="strong-produit_2">{{post.title}}</strong>  <div class="produit-infos"> <strong class="str-boutique">  <img  id="img-boutique" src="{% static  'img/icons8-commentaire-50.png' %}"  > <span class="str-boutique-span"> {{post.comment.count}} </span>  <img src="{% static 'img/icons8-coeur-rempli-32 (1).png' %}" title="le nombre de like géneré par l'article"> <span class="str-boutique-span">{{post.like.count}}</span> </strong> <a href="{% url 'post_modif' post.id %}" class="modif-boutique" title="modifier les informations sur l'article"><img id="img-boutique" src="{% static 'img/icons8-registration-24.png' %}"></a> <a href="{% url 'post_delete' post.id %}" class="corbeil-boutique" title="supprimer definitivement l'article de votre boutique"><img id="img-boutique" src="{% static 'img/icons8-déchets-50 (1).png' %}"></a></div>
+       </a>
+        </div>
+        {% empty %}
+        <p style="display: flex;justify-content: center;margin-top: 5em;color: red;"> Pas d'informations : {{query}} </p>
+        {% endfor %}
+    </div>
+    <div class="pub-boutique">
+        <h4>vos commentaires  </h4>
+        {% for comment in comments  %}
+        <div class="produit-boutique">
+       <a href="{% url 'post_detail' comment.post.id %}" class="a-produit"> <img src="{{comment.user.image.url}}"> <strong class="strong-produit_2">{{comment.user.user.username}}</strong>  <div class="produit-infos"> <strong class="str-boutique" >    <img src="{% static 'img/icons8-coeur-rempli-32 (1).png' %}" title="le nombre de like géneré par l'article"> <span class="str-boutique-span">{{comment.like.count}}</span> </strong> <a href="{% url 'comment_post_modif' comment.id %}" class="modif-boutique" title="modifier les informations sur l'article"><img id="img-boutique" src="{% static 'img/icons8-registration-24.png' %}"></a> <a href="{% url 'comment_post_delete' comment.id %}" class="corbeil-boutique" title="supprimer definitivement l'article de votre boutique"><img id="img-boutique" src="{% static 'img/icons8-déchets-50 (1).png' %}"></a></div>
+       </a>
+        </div>
+        {% empty %}
+        <p style="display: flex;justify-content: center;margin-top: 5em;"> Pas d'informations </p>
+        {% endfor %}
+    </div>
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% endif %}

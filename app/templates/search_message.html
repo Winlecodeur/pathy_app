@@ -1,0 +1,35 @@
+<!DOCTYPE html>{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/search_msg.css' %}">
+        <meta charset='UTF-8'>
+        <meta name="viewport" content="width=device-width", initial-scale="1.0">
+        <title>messagerie</title>
+    </head>
+    <body>
+       <div class="inbo">
+            
+        <h2>MESSAGERIE</h2>
+    
+    <div class="inbox">
+        <ul id="messages-list">
+            <form method="get" action="{% url 'search_message' %}" class="search">
+                <input name="q" value="{{query}}" placeholder="ex.jason">
+                <button type="submit">recherche</button>
+            </form>
+            <small class="small"> resultats : {{query}}</small>
+       {% if resultats %}
+       {% for user in resultats  %}
+       <a href="{% url 'admin_message' user.id  %}">  <img src="{% static 'img/icons8-compte-50 (5).png' %}"> <div class="send-inbox"><span class="sender-class"> {{user.username}}    </span><small class="sender-class">  {% for messagerie in msg %} {% if messagerie.sender == request.user %}{{messagerie.text}} {% endif %} {% endfor %}   </small></div> </a>
+       {% endfor %}
+       {% else %}
+       <p class="send-p"> Aucun resultat pour : {{query}} <small>faites une autre recherche</small> </p>
+       
+       {% endif %}
+    
+    </div>
+      
+        
+        </div>
+    </body>
+</html>

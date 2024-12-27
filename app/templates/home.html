@@ -1,0 +1,311 @@
+{%  if user.is_authenticated %}
+<!DOCTYPE html>{% load static  %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homes.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_post.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/subscribe.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'img/LOGO.png' %}">
+            <h1> Pathy <span> design </span> </h1>
+        </div>
+        <div class="search">
+            <form method="get" action="{% url 'search_home' %}">
+                <input name="q" placeholder="ex:ZONGO" value="{{query}}">
+                <button type="submit"> <img src="{% static 'img/icons8-chercher-50 (3).png' %}"> </button>
+            </form>
+        </div>
+        <div class="menu">
+            <a href="{% url 'home' %}" class=""><img src="{% static 'img/icons8-home-48.png' %}" alt=""></a>
+            <a href="{% url 'reservation_form' %}"><img src="{% static 'img/icons8-réservation-64.png' %}" alt=""></a>
+            <a href="{% url  'profile' %}"><img src="{% static 'img/icons8-compte-50 (5).png' %}" alt=""></a>
+        </div>
+    </header>
+    <div class="en-tete" id="en-tete">
+        <aside class="">
+            <img src="{% static 'img/EVFR0440.PNG' %}">
+        </aside>
+        <section class="">
+            <h2> BIENVENUE CHEZ PATHY DESIGN  </h2>
+            <p> Welcome sur l'appplication web officiel de pathy design, partager nos articles , prenez une reservation,discutez avec notre AI pour vos besoins, consultez nos publications, reseaux sociaux, aricles et bien plus  </p>
+            <span>  <a href="#post"> consulter notre app web </a> </span>
+        </section>
+    </div>
+   
+    <nav class="post" id="post">
+
+        {% for post in profile  %}
+       <h3 class="item voir1"> <span>  Mannequins </span><a href="{% url 'home_mannequin' post.compte.id   %}"> voir plus </a></h3> 
+      
+     <nav class="item" id="categorie">
+        <aside>
+           
+             
+             {% for post in post.user.post.all %}
+             <div class="post-img" id="post-{{post.id}}">
+                <a href="{% url 'post_detail' post.id %}" class="a-img">
+              <img src="{{post.image.url}}">
+             <span class="span1"> {{post.title}}</span></a>
+             <div class="icones">
+                <a href="{% url 'like' post.id  %}"> <span> {{post.like.count}} </span>  {% if request.user in post.like.all %}<img src="{% static 'img/icons8-fondre-hert-50 (1).png' %}"> {% else %} <img src="{% static 'img/icons8-heart-50.png' %}"></a> </a> {% endif %}
+            <a href="{% url 'post_detail' post.id %}#comment"> <span> {{post.comment.count}} </span> <img src="{% static 'img/icons8-commentaire-50.png' %}"></a>
+            <a href="{% url 'post_detail' post.id %}"><img src="{% static 'img/icons8-partager-50 (1).png' %}"></a>
+           </div>
+           </div>
+            </div>
+           
+              {% endfor %}
+        </aside>
+     </nav>
+     <h3 class="item  voir"> <span>{{post.name}}</span><a href="{% url 'home_mannequin' post.compte.id  %}"> voir plus </a></h3> 
+        {% endfor %}
+    </nav>
+    
+    <nav class="post" id="post2">
+
+        {% for post in posts  %}
+       <h3 class="item voir1"> <span>{{post.name}}</span><a href="{% url 'categorie' post.id   %}"> voir plus </a></h3> 
+      
+     <nav class="item" id="categorie">
+        <aside>
+            {% for post in post.categories.all %}
+            <div class="post-img" id="post-{{post.id}}">
+                <a href="{% url 'post_detail' post.id %}" class="a-img">
+              <img src="{{post.image.url}}">
+             <span class="span1"> {{post.title}}</span></a>
+             <div class="icones">
+                <a href="{% url 'like' post.id  %}"> <span> {{post.like.count}} </span>  {% if request.user in post.like.all %}<img src="{% static 'img/icons8-fondre-hert-50 (1).png' %}"> {% else %} <img src="{% static 'img/icons8-heart-50.png' %}"></a> </a> {% endif %}
+            <a href="{% url 'post_detail' post.id %}#comment"> <span> {{post.comment.count}} </span> <img src="{% static 'img/icons8-commentaire-50.png' %}"></a>
+            <a href="{% url 'post_detail' post.id %}#comment"><img src="{% static 'img/icons8-partager-50 (1).png' %}"></a>
+           </div>
+           </div>
+            </div>
+             {% endfor %}
+            
+        </aside>
+     </nav>
+     <h3 class="item  voir"> <span>{{post.name}}</span><a href="{% url 'categorie' post.id   %}"> voir plus </a></h3> 
+        {% endfor %}
+    </nav>
+  
+    <nav class="news" id="news">
+        <nav class="news-nav item" id="news-nav-letter">
+            <div class="news-div">
+                <img src="{% static 'img/icons8-lettre-avec-signe-e-mail-50.png' %}">
+            <h3> NEWSLETTER </h3>
+            </div>
+            <div class="news-div2" id="form">
+                <form action="{% url 'subscribe' %}#form" method="post">  
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li class="{{message.tags}}">  {{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}    
+                    {% csrf_token %}
+                    <label>email</label> <input type="email" name="email">
+                    <button type="submit">soummettre</button>
+                </form>
+            </div>
+        </nav>
+    </nav>
+<footer id="footer">
+   <div class="footer-icones item" >
+    <a href=""><img src="{% static 'img/icons8-instagram-50 (2).png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-facebook-nouveau-50 (2).png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-whatsapp-30.png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-tiktok-24.png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-tiktok-24.png' %}" alt=""></a>
+   </div>
+   <div class="footer-infos item" >
+    <nav>
+        <h3> Communautés </h3>
+        <span>  consulter nos réseaux sociaux pour voir notre grande famille, créer un compte, abonnez-vos à nos réseaux pour en faire partie, rester actif pour être au courant de tout les nouveautés  </span>
+    </nav>
+    <nav>
+        <h3>  Adresse </h3>
+        <span>  14 Ebonda Q/BINZA6PIGEON KINSHASA/NGALIEMA , prenez un rendez-vous pour profiter de notre expertise en vous offrant que le meilleur de service. </span>
+    </nav>
+    <nav>
+        <h3>  DISPONIBILITE </h3>
+        <span>  Nous sommes disponiblechaque jour par reservation , prenez votre reservation pour bénéficier de nos services selon votre besoin. </span>
+    </nav>
+    <nav>
+        <h3>  A PROPOS </h3>
+        <span> Qui est Pathy design ?, c'est une entreprise de photographie, design, cinématographie et bien plus, consulter nos publications pour en savoir plus </span>
+    </nav>
+    <nav>
+        <h3>  PARTERIATS </h3>
+        <span> Pathy design accepte les collaborations et partenariats avec qui le veut, créer un compte, ecrivez-nous et nous en deciderons </span>
+    </nav>
+   </div>
+    <small class="small"> <span> &copy;  </span> created by win alfani technology </small> 
+</footer>
+<script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
+{% else %}
+<!DOCTYPE html>{% load static  %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homes.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_post.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'img/LOGO.png' %}">
+            <h1> Pathy <span> design </span> </h1>
+        </div>
+        <div class="search">
+            <form method="get" action="{% url 'search_home' %}">
+                <input name="q" placeholder="ex:ZONGO" value="{{query}}">
+                <button type="submit"> <img src="{% static 'img/icons8-chercher-50 (3).png' %}"> </button>
+            </form>
+        </div>
+        <div class="menu">
+            <a href="{% url 'home' %}" class=""><img src="{% static 'img/icons8-home-48.png' %}" alt=""></a>
+            <a href="{% url 'reservation_form' %}"><img src="{% static 'img/icons8-réservation-64.png' %}" alt=""></a>
+            <a href="{% url  'profile' %}"><img src="{% static 'img/icons8-compte-50 (5).png' %}" alt=""></a>
+        </div>
+    </header>
+    <div class="en-tete" id="en-tete">
+        <aside class="">
+            <img src="{% static 'img/EVFR0440.PNG' %}">
+        </aside>
+        <section class="">
+            <h2> BIENVENUE CHEZ PATHY DESIGN  </h2>
+            <p> Welcome sur l'appplication web officiel de pathy design, créer un compte, prenez une reservation,discutez avec notre AI pour vos besoins, consultez nos publications, reseaux sociaux, aricles et bien plus  </p>
+            <span>  <a href="#post"> consulter notre app web </a> </span>
+        </section>
+    </div>
+    <div class="en-tete" id="en-tete2">
+        <aside class="aside-img  item aside-img1" >
+            <img src="{% static 'img/1734106594835.jpg' %}">
+        </aside>
+        <section class="item">
+            <h2 > CREER UN COMPTE  </h2>
+            <p> Créer un compte dans cette appplicationweb qui est l'app web officiel de pathy design, vous permettant de liker nos publications, commenter, discuter avec notre AI ou avec nous , consulter tout nous concernant, rester avec notre immense communauté </p>
+            <span>  <a href="{% url 'signup' %}"> créer un compte  </a> </span>
+        </section>
+        <aside class="aside-img  item aside-img2" >
+            <img src="{% static 'img/1734106594835.jpg' %}">
+        </aside>
+    </div>
+    <nav class="post" id="post">
+
+        {% for post in profile  %}
+       <h3 class="item voir1"> <span>  Mannequins </span><a href="{% url 'home_mannequin' post.compte.id   %}"> voir plus </a></h3> 
+      
+     <nav class="item" id="categorie">
+        <aside>
+           
+             
+             {% for post in post.user.post.all %}
+             <div class="post-img" id="post-{{post.id}}">
+                <a href="{% url 'post_detail' post.id %}" class="a-img">
+              <img src="{{post.image.url}}">
+             <span class="span1"> {{post.title}}</span></a>
+             <div class="icones">
+                <a href="{% url 'like' post.id  %}"> <span> {{post.like.count}} </span>  {% if request.user in post.like.all %}<img src="{% static 'img/icons8-fondre-hert-50 (1).png' %}"> {% else %} <img src="{% static 'img/icons8-heart-50.png' %}"></a> </a> {% endif %}
+                <a href="{% url 'post_detail' post.id %}#comment"> <span> {{post.comment.count}} </span> <img src="{% static 'img/icons8-commentaire-50.png' %}"></a>
+                <a href="{% url 'post_detail' post.id %}"><img src="{% static 'img/icons8-partager-50 (1).png' %}"></a>
+              </div>
+           </div>
+            </div>
+           
+              {% endfor %}
+        </aside>
+     </nav>
+     <h3 class="item  voir"> <span>{{post.name}}</span><a href="{% url 'home_mannequin' post.compte.id  %}"> voir plus </a></h3> 
+       {% endfor %}
+    </nav>
+    
+    <nav class="post" id="post2">
+
+        {% for post in posts  %}
+       <h3 class="item voir1"> <span>{{post.name}}</span><a href="{% url 'categorie' post.id   %}"> voir plus </a></h3> 
+      
+     <nav class="item" id="categorie">
+        <aside>
+            {% for post in post.categories.all %}
+            <div class="post-img" id="post-{{post.id}}">
+                <a href="{% url 'post_detail' post.id %}" class="a-img">
+              <img src="{{post.image.url}}">
+             <span class="span1"> {{post.title}}</span></a>
+             <div class="icones">
+                <a href="{% url 'like' post.id  %}"> <span> {{post.like.count}} </span>  {% if request.user in post.like.all %}<img src="{% static 'img/icons8-fondre-hert-50 (1).png' %}"> {% else %} <img src="{% static 'img/icons8-heart-50.png' %}"></a> </a> {% endif %}
+                <a href="{% url 'post_detail' post.id %}#comment"> <span> {{post.comment.count}} </span> <img src="{% static 'img/icons8-commentaire-50.png' %}"></a>
+                <a href="{% url 'post_detail' post.id %}"><img src="{% static 'img/icons8-partager-50 (1).png' %}"></a>
+              </div>
+           </div>
+            </div>
+             {% endfor %}
+            
+        </aside>
+     </nav>
+     <h3 class="item  voir"> <span>{{post.name}}</span><a href="{% url 'categorie' post.id   %}"> voir plus </a></h3> 
+        {% endfor %}
+    </nav>
+  
+    <nav class="news" id="news">
+        <nav class="news-nav item" >
+            <div class="news-div">
+                <img src="{% static 'img/icons8-lettre-avec-signe-e-mail-50.png' %}">
+            <h3> NEWSLETTER </h3>
+            </div>
+            <div class="news-div2">
+                <form action="{% url 'subscribe' %}" method="post">
+                    {% csrf_token %}
+                    <label>email</label> <input type="email" name="email">
+                    <button type="submit">soummettre</button>
+                </form>
+            </div>
+        </nav>
+    </nav>
+<footer id="footer">
+   <div class="footer-icones item" >
+    <a href=""><img src="{% static 'img/icons8-instagram-50 (2).png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-facebook-nouveau-50 (2).png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-whatsapp-30.png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-tiktok-24.png' %}" alt=""></a>
+    <a href=""><img src="{% static 'img/icons8-tiktok-24.png' %}" alt=""></a>
+   </div>
+   <div class="footer-infos item" >
+    <nav>
+        <h3> Communautés </h3>
+        <span>  consulter nos réseaux sociaux pour voir notre grande famille, créer un compte, abonnez-vos à nos réseaux pour en faire partie, rester actif pour être au courant de tout les nouveautés  </span>
+    </nav>
+    <nav>
+        <h3>  Adresse </h3>
+        <span>  14 Ebonda Q/BINZA6PIGEON KINSHASA/NGALIEMA , prenez un rendez-vous pour profiter de notre expertise en vous offrant que le meilleur de service. </span>
+    </nav>
+    <nav>
+        <h3>  DISPONIBILITE </h3>
+        <span>  Nous sommes disponiblechaque jour par reservation , prenez votre reservation pour bénéficier de nos services selon votre besoin. </span>
+    </nav>
+    <nav>
+        <h3>  A PROPOS </h3>
+        <span> Qui est Pathy design ?, c'est une entreprise de photographie, design, cinématographie et bien plus, consulter nos publications pour en savoir plus </span>
+    </nav>
+    <nav>
+        <h3>  PARTERIATS </h3>
+        <span> Pathy design accepte les collaborations et partenariats avec qui le veut, créer un compte, ecrivez-nous et nous en deciderons </span>
+    </nav>
+   </div>
+    <small class="small"> <span> &copy;  </span> created by win alfani technology </small> 
+</footer>
+<script src="{% static 'js/homes.js' %}"></script>
+</body>
+</html>
+{% endif %}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'mesg.css' %}">
+        <meta charset='UTF-8'>
+        <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    </head>
+    <body>
+       <div class="inbo">
+            
+        <h2>MESSAGERIE          <a href="{% url 'profile' %}" class="back"><img src="{% static 'img/icons8-partager-50 (1).png' %}" id="btn"></a>
+        </h2>
+    
+    <div class="inbox">
+       {% if user.is_superuser %}
+       <form method="get" action="{% url 'search_message' %}" class="search">
+        <input name="q" value="{{query}}" placeholder="ex.jason">
+        <button type="submit">recherche</button>
+    </form>
+    {% endif %}
+        {% for sender in message_senders  %}
+       {% for prof  in  profiles  %} 
+       {% if user.is_superuser  %}
+       <a href="{% url 'admin_message' sender.id  %}">  <img src="{{prof.image.url}}"> <div class="send-inbox"><span class="sender-class"> {{sender.username}}    </span>  </div> </a>
+       {% else %}
+<p class="send-p"> vous n'avez aucun message  </p>    
+{% endif %} 
+{% endfor %}
+{% empty %}
+{% if user.is_superuser %}
+<p class="send-p"> vous n'avez aucun message  </p>  
+{% else %}
+<p class="send-p"> vous discutez avec l'administrateur <small>posez toutes les préoccupations dont vous avez besoin, en cas de retard de livraison, des mauvaises marchandises, de prix qui vous derange ou tout autre question, n'hesitez pas</small>  </p>       
+{% endif %}
+{% endfor %}
+    </div>
+       </div>
+        <div class="medias">
+          {% if profile %}
+          <div class="profil"> <div class="profil-name"><img src="{{profile.image.url}}" >  <strong>  {% if profile.is_superuser  %} administrateur {% else %} {{profile.user.username}} {% endif %} </strong></div> <div class="lien">
+            <a href="{{profile.facebook}}" ><img src="{% static 'img/icons8-facebook-nouveau-50 (2).png' %}" > </a>
+            <a href="{{profile.whatsapp}}"><img src="{% static 'img/icons8-whatsapp-30.png' %}"> </a>
+          </div>
+        </div>
+          {% endif %}    
+            <div class="message" id="message-container">
+                <ul id="messages-list">
+                    {% for messagerie in messages %}
+                    
+                    {% if messagerie.sender == request.user %}
+                 <div class="sender">
+                        <p class="p"> 
+                        {% if messagerie.image %}
+                        <img src="{{messagerie.image.url}}" class="send-img">
+                        {% endif %}<br>
+                        <span class="p2-span"> {{messagerie.text}} </span>
+                        <br>
+                     
+                       
+                            <div class="small-a"> <span class="span">{{messagerie.date}} </span>{% if messagerie.sender == request.user %}
+                                <div class="main">
+                                    <a class="link-a">...</a>
+                                    <div class="link" >
+                                        <a href="{% url 'delete_message' messagerie.id %}"><img src="{% static 'img/icons8-déchets-50 (1).png' %}" alt=""></a>
+                                        <a href="{% url 'modif_message' pk=messagerie.id %}"><img src="{% static 'img/icons8-modifier-24.png' %}" alt=""></a>                   
+                                       </div>
+                                   </div>
+                                {% endif %} </div>    
+                      
+                     
+                       </p>
+                       </div>
+                    {% else %}
+                    <br>
+                    <div class="receiver">
+                
+                        <p class="p2"> {% if messagerie.image %}
+                        <img src="{{messagerie.image.url}}" class="send-img">
+                        {% endif %}<br>
+                        <span class="p2-span"> {{messagerie.text}} </span>
+                            <br>
+                            <div class="small-a"> <span class="span">{{messagerie.date}} </span>{% if request.user.is_superuser %}
+                                <div class="main">
+                                    <a class="link-a">...</a>
+                                    <div class="link" >
+                                        <a href="{% url 'delete_message_receiver' messagerie.id %}"><img src="{% static 'img/icons8-déchets-50 (1).png' %}" alt=""></a>
+                                   
+                                      </div>
+                                   </div>
+                                {% endif %} </div>
+                       </p>
+                       </div>{% endif %}
+                    {% empty %}<br>b<br><br><br><br>
+                    {% if user.is_superuser %}
+                    <p class="info-p"><strong>Envoyer un message à un client </strong><img src="{% static 'img/pngwing.com.png' %}"></p>
+                   {% else %}
+                   <p class="info-p"><strong>Envoyer un message à l'administrateur </strong><img src="{% static 'img/pngwing.com.png' %}"></p>
+                   {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="media">
+               
+                <form method="post" enctype="multipart/form-data" class="form">
+                    {% csrf_token %}
+             
+                  
+                    <label for="text"> </label><br>
+                    <textarea name="text" cols="70" placeholder="envoyer un message" title="text"> </textarea>
+                  <div class="multimedia"></div>
+                    <div class="image" >
+                    <label for="image" style="background-color: #264653; padding: 30px 10px;">image</label><br>
+                    <input type="file" name="image" >
+                   </div>
+                  <button type="submit"> <img src="{% static 'img/icons8-avion-en-papier-50.png' %}"> </button>
+                </form>
+          
+                </div>
+        </div>
+        <script>
+            var menu = document.querySelector('.image')
+            var small_menu = document.querySelector('.multimedia')
+            small_menu.onclick = function () {
+                small_menu.classList.toggle('active');
+                menu.classList.toggle('responsive')
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                var messagecontainer = document.getElementById('message-container');
+                messagecontainer.scrollTop = messagecontainer.scrollHeight
+            } )
+    
+            
+        </script>
+    </body>
+</html>

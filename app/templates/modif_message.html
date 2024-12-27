@@ -1,0 +1,39 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/modif_message.css' %}">
+    <title>modifier le message</title>
+</head>
+<body>
+    <div class="media">
+               
+        <form method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+     
+          
+            <label for="text"> </label><br>
+           {{form.text}}
+          <div class="multimedia"></div>
+            <div class="image">
+            <label for="image">image:</label>
+           {{form.image}}
+           </div>
+           <button type="submit"> <img src="{% static 'img/icons8-avion-en-papier-50.png' %}"> </button>
+                
+        </form>
+        <small class="small">modifiez au temps de fois que votre message, vous avez le libre arbitre en cas d'erreur ou faute de frappe, consulter votre message et modifiez-le </small>
+    </div>
+       <script>
+            var menu = document.querySelector('.image')
+            var small_menu = document.querySelector('.multimedia')
+            small_menu.onclick = function () {
+                small_menu.classList.toggle('active');
+                menu.classList.toggle('responsive')
+            }
+    
+            
+        </script>
+</body>
+</html>

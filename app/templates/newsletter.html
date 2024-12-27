@@ -1,0 +1,106 @@
+{% if request.user.is_superuser %}
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/agenda.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/subscribe.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href="{% url 'profile' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href="{% url 'agenda' %}"><img src="{% static 'img/icons8-calendrier-détachable-50.png' %}" alt="">Agenda </a></li>
+        <li  ><a href="{% url 'client' %}"><img src="{% static 'img/icons8-client-48.png' %}" alt="">vos clients </a></li>
+        <li  ><a href="{% url 'mannequin' %}"><img src="{% static 'img/icons8-robe-50.png' %}" alt="">Vos mannequins </a></li>
+        <li  ><a href="{% url 'reservation' %}"><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+       <li ><a href="{% url 'admin_message' user.id %}"><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li  ><a href="{% url 'infos' %}"><img src="{% static 'img/icons8-compte-30 (1).png' %}" alt="">informations générales</a></li>
+        <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+        <li ><a href="{% url 'add' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+        <li ><a href="{% url 'post' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+        <li ><a href="{% url 'logout_view' %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+        <div class="profil">
+            <img src="{{profile.image.url}}">{% if natifs %}
+            <a href="">
+                <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
+                <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+            </a> {% endif %}
+        </div>
+       
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+    <a ><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4>Ajouter un email </h4> <span>En ajoutant un email dans votre newsletter, cela vous permettra de créer plus d'interaction avec  vos utilisateurs <span></div> </a>
+    <a href="{% url  'post' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt=""><div><h4> consulter chaque post </h4> <span>Consulter les informations de chaque post en cliquant ici</span></div></a>
+    <a ><img src="{% static 'img/icons8-chercher-50 (3).png' %}" alt=""> <div><h4> Pourquoi envoyer une NEWSLETTER</h4> vous pouvez envoyer autant que possible, tout ayant connaissance que seul ceux qui sont abonnés à votre newsletter recevront votre email</span></div> </a>
+
+</div>   
+<div class="pub-stock">
+    <div class="pub-boutique "  id="post">
+        <h4>  Envoyer une NEWSLETTER</h4>
+        <form method="post" action="{% url 'send_newsletter' %}">
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li class="{{message.tags}}">  {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}    
+                {% csrf_token %}
+                <div>
+                    <label for="subject">Sujet</label>
+        <input type="text" id="subject" name="subject" required>
+                </div>
+               
+                <div>
+                    <label for="message">message</label>
+        <textarea rows="5" id="message" name="message" required></textarea>
+                  </div>
+               <div>
+
+                <button type="submit"> envoyer </button>
+               </div>
+            </form>
+            
+    </div>
+
+    <div class="pub-boutique">
+       <p style="display: flex; justify-content: center;margin-top: 10em;">
+        <span style="width: 80%; font-family: Arial, Helvetica, sans-serif;">  Envoyez des NEWSLETTERS à toutes personnes qui s'y est abonnée, redigez un titre et un contenue pour previner toutes ces personnes </span>
+       </p>
+    </div>
+   
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% endif %}
+
+
+

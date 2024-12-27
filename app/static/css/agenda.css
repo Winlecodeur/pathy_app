@@ -1,0 +1,49 @@
+.pub-boutique form div {
+    display: grid;
+    justify-content: center;
+    margin-top: 0.8em;
+}
+
+.pub-boutique  form div input {
+    width: 300px;
+    padding: 5px 10px;
+    border: 1px solid #264653;
+    border-radius: 9px;
+    outline: none;
+}
+.pub-boutique  form div input:focus {
+    border: 2px #264653 solid;
+}
+.pub-boutique  form div textarea {
+    width: 300px;
+    height: 90px;
+    border: 1px #264653 solid;
+    outline: none;
+}
+.pub-boutique  form div textarea:focus {
+    border: 2px #264653 solid;
+}
+.pub-boutique form div button {
+    border: none;
+    padding: 10px 60px;
+    color: white;
+    background-color: #264653;
+    border-radius: 35px;
+}
+@media (max-width:1000px){
+    .pub-stock {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(1,1fr);
+        margin-left: 0;
+    }
+    .pub-boutique{
+        width:350px;
+    }
+    .nav-bar .infos{
+        font-size:12px;
+    }
+    .post_form form {
+        width:350px;
+    }
+}

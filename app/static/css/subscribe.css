@@ -1,0 +1,23 @@
+.success{
+    color:green;
+    font-weight: bold;
+    list-style: none;
+}
+.error{
+    color: red;
+    font-weight: bold;
+    list-style: none;
+}
+.news #news-nav-letter {
+    width: 400px;
+    max-height: 200px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow:  0 0 8px black;
+    border-radius: 20px;
+}
+@media(max-width:946px){
+    .span1{
+        width: 250px;
+    }
+}

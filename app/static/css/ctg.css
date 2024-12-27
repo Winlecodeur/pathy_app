@@ -1,0 +1,129 @@
+.post1 .post-img img {
+    width: auto;
+    height:auto;
+    max-height: 350px;
+    max-width: 300px;
+    border-radius: 20px;
+}
+.post1 .post-img img:hover{
+    max-width: 320px;
+    max-height: 360px;
+}
+.post1 .post-img .a-img {
+    text-decoration: none;
+    color: #1E1E1E;
+    display: grid;
+    align-items: baseline;
+    align-content: baseline;
+    justify-content: baseline;
+   
+}
+.post1 .post-img .a-img:hover{
+ max-width: 310px;
+    max-height: 360px;
+}
+
+.post1 nav aside {
+    text-decoration: none;
+    color: #1E1E1E;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center
+    ;
+    place-items: center;
+    
+    overflow: hidden;
+    gap: 10px;
+
+}
+.post1 nav {
+    display: flex;
+    justify-content: center;
+}
+.post1 {
+    margin-top: 10em;
+}
+.post1 h3 {
+    display: flex;
+    justify-content: space-around;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5em;
+
+    
+}
+.post1 h3 a {
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.post1 h3 span {
+    font-size: 20px;
+    padding: 3px 20px;
+    border-radius: 10px;
+    background-color: #264653;
+    color: white;
+}
+.post-img {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+}
+.post-img .span1 {
+    display: flex;
+    justify-content: center;
+    word-break: keep-all;
+    max-width: 400px;
+}
+.post-img .icones {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    max-width: 350px;
+}
+.post-img .icones img {
+    width: 1.5em;
+    height: 1.5em;
+}
+.post-img .icones img:hover{
+    width: 1.8em;
+    height: 1.8em;
+}
+.post-img .icones a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    align-content: center;
+    box-shadow: 0 0 3px 0 0 black;
+    border-radius: 35px;
+    padding: 5px 20px;
+    width: 3em;
+    height: 3em;
+}
+::-webkit-scrollbar{
+    width: 10px;
+    
+}
+::-webkit-scrollbar-thumb{
+    background-color: #264653;
+    border-radius: 35px;
+   
+}
+
+.post1 nav aside .span1{
+    width: 300px;
+}
+@media(max-width:1010px){
+    .post1 nav aside {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+        place-items: center;
+    }
+    .post1 nav aside .span1 {
+        width: 290px;
+    }
+}

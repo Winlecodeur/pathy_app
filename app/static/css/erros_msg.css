@@ -1,0 +1,32 @@
+.success{
+    color:green;
+    font-weight: bold;
+    list-style: none;
+}
+.nav-form form ul{
+    height: 30px;
+    
+}
+.error{
+   
+    color: red;
+    font-weight: bold;
+    list-style: none;
+    width: 300px;
+    padding: 30px 30px;
+    height: 10px;
+    font-size: 12px;
+}
+.news #news-nav-letter {
+    width: 400px;
+    max-height: 200px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    box-shadow:  0 0 8px black;
+    border-radius: 20px;
+}
+@media(max-width:946px){
+    .span1{
+        width: 250px;
+    }
+}

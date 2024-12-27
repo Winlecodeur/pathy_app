@@ -1,0 +1,79 @@
+<!DOCTYPE html>{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+    <title>Profile</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-in-love-50 (2).png' %}"> adminstration</h1>
+    <ul>
+      <li ><a href=""><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-24.png' %}" alt="">dashboard</a></li>
+      <li  ><a href=""><img src="{% static 'img/icons8-graphique-50.png' %}" alt="">tableau administration</a></li>
+      <li ><a href=""><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+      <li  ><a href=""><img src="{% static 'img/icons8-boutique-en-ligne-50.png' %}" alt="">boutique</a></li>
+      <li ><a href=""><img src="{% static 'img/icons8-porte-voix-50.png' %}" alt="">solde et colletion</a></li>
+      <li ><a href=""><img src="{% static 'img/icons8-registration-24.png' %}" alt="">modifier vos informations</a></li>
+      <br><br><br><br> <li ><a href="" class="logout"><img src="{% static  'img/icons8-sortie-50 (1).png' %}" alt="">logout</a></li>
+  </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+        <div class="profil">
+            <img src="{{user.profile.image.url}}">
+            <a href="">
+                <span>8</span>
+                <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+            </a>
+        </div>
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+  </section>
+
+  <a href="" class="graphique"><img src="{% static 'img/Capture.PNG' %}">
+    <span>consulter le graphique</span>
+    </a>
+    
+    <h2>Tableau des commandes  <form method="get" class="form1" >
+      <input type="text" placeholder="ex.N° ID 31" name="q" value="{{query}}">
+      <button type="submit" ><img src="{% static 'img/icons8-recherche-24.png' %}"></button>
+    </form></h2>
+         <table ><thead>
+            <tr>
+                <th class="t1">com. id </th>
+                <th> email</th>
+                <th class="info-th">informations</th>
+                <th>etat</th>
+                <th>prix total</th>
+            </tr></thead>
+            {% for total_sum in total_sums %}
+           <tr>
+            <td>{{total_sum.commande.id}}</td>
+           <td> {{total_sum.commande.user.email}}</td>
+        <td class="details"> <a href="" class="detail">details</a></td><td>{% if total_sum.commande.completed %} <span class="completed"> {{total_sum.commande.completed|yesno:"effectuée,en attente"}}</span> {% else %} <span class="wait">{{total_sum.commande.completed|yesno:"effectuée,en attente"}} </span>{% endif %} </td>
+           <td > $ {{total_sum.total|floatformat:2}}</td>
+           </tr>
+           <tr>
+            {% for item in  commande.items.all %}
+            {{item.confirmation.date}}{% endfor %}
+           </tr>
+           {% endfor %}
+         </table>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>

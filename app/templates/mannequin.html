@@ -1,0 +1,91 @@
+{% if request.user.is_superuser %}
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/agenda.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+      <li ><a href="{% url 'profile' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+      <li  ><a href="{% url 'agenda' %}"><img src="{% static 'img/icons8-calendrier-détachable-50.png' %}" alt="">Agenda </a></li>
+      <li  ><a href="{% url 'client' %}"><img src="{% static 'img/icons8-client-48.png' %}" alt="">vos clients </a></li>
+      <li  ><a href="{% url 'mannequin' %}"><img src="{% static 'img/icons8-robe-50.png' %}" alt="">Vos mannequins </a></li>
+      <li  ><a href="{% url 'reservation' %}"><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+     <li ><a href="{% url 'admin_message' user.id %}"><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+      <li  ><a href="{% url 'infos' %}"><img src="{% static 'img/icons8-compte-30 (1).png' %}" alt="">informations générales</a></li>
+      <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+      <li ><a href="{% url 'add' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+      <li ><a href="{% url 'post' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+      <li ><a href="{% url 'logout_view' %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+  </ul>
+</section>
+<section class="nav-bar">
+  <div class="toggle" id="toggle"></div>
+  <nav class="">
+      <div class="infos">
+          <span> {{user.username}} </span>
+          <span> {{user.email}} </span>
+      </div>
+      <div class="profil">
+        <img src="{{profile.image.url}}">{% if natifs %}
+        <a href="">
+            <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
+            <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+        </a> {% endif %}
+    </div>
+   
+      <a href="{% url 'home' %}" class="link">visiter le site</a>
+  </nav>
+  
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+        <a ><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4> Consultez la liste </h4> <span> vous pouvez consulter la liste de tout vos utilisateurs mannequis en cliquant ici <span></div> </a>
+        <a  ><img src="{% static 'img/icons8-déchets-50 (1).png' %}" alt=""><div><h4> Supprimer l'utilisateur  </h4> <span>Vous pouvez supprimer l'utilisateur en cliquant ici, cette action est irréversible</span></div></a>
+        <a ><img src="{% static 'img/icons8-modifier-24.png' %}" alt=""> <div><h4> Modifier les infos</h4> Vous pouvez modifier les infors autant de fois que possible juste en cliquant sur l'icône </span></div> </a>
+
+</div>   
+<div class="pub-stock">
+    <div class="pub-boutique">
+        <h4> les mannequins : ( {{posts.count}} ) <form method="get" class="form2" action="{% url 'mannequin_search' %}#search">
+            <input   placeholder="ex.c'est genial" name="q" value="{{query}}">
+            <button type="submit" ><img src="{% static 'img/icons8-chercher-50 (3).png' %}"></button>
+          </form>  </h4>
+        {% for post in posts  %}
+        <div class="produit-boutique">
+       <a href="{% url 'mannequin_detail' post.id %}" class="a-produit"> <img src="{{post.image.url}}">  <strong class="strong-produit_2">{{post.user.username}}</strong>  <div class="produit-infos">    <a href="{% url 'mannequin_modif' post.id %}#modif" class="modif-boutique" title="modifier les informations sur l'article"><img id="img-boutique" src="{% static 'img/icons8-registration-24.png' %}"></a> <a href="{% url 'infos_delete' post.id post.user.id %}" class="corbeil-boutique" title="supprimer definitivement l'article de votre boutique"><img id="img-boutique" src="{% static 'img/icons8-déchets-50 (1).png' %}"></a></div>
+       </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="pub-boutique "  id="post">
+        <h4> Consulter la liste mannequin </h4>
+           <p style="display:flex;justify-content: center;margin-top: 5em;">
+            Vous pouvez modifier, supprimer et consulter le profil de chaque utilisateur <br><br><br>
+            vous pouvez modifier autant de fois que possible les infos de chaque utilisateur <br><br><br>
+            si vous supprimez l'utilisateur cet action est irréversible, c'est-à-dire l'utilisateur sera bannit de votre application
+            <br> 
+           </p>
+            
+    </div>
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% endif %}

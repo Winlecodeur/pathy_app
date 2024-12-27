@@ -1,0 +1,172 @@
+{% if request.user.is_superuser %}
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href="{% url 'profile' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href="{% url 'agenda' %}"><img src="{% static 'img/icons8-calendrier-détachable-50.png' %}" alt="">Agenda </a></li>
+        <li  ><a href="{% url 'client' %}"><img src="{% static 'img/icons8-client-48.png' %}" alt="">vos clients </a></li>
+        <li  ><a href="{% url 'mannequin' %}"><img src="{% static 'img/icons8-robe-50.png' %}" alt="">Vos mannequins </a></li>
+        <li  ><a href="{% url 'reservation' %}"><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+       <li ><a href="{% url 'admin_message' user.id %}"><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li  ><a href="{% url 'infos' %}"><img src="{% static 'img/icons8-compte-30 (1).png' %}" alt="">informations générales</a></li>
+        <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+        <li ><a href="{% url 'add' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+        <li ><a href="{% url 'post' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+        <li ><a href="{% url 'logout_view' %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+        
+        <div class="profil">
+         <img src="{{profile.image.url}}">{% if natifs %}
+         <a href="">
+             <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
+             <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+         </a> {% endif %}
+     </div>
+    
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+    <a href="{% url 'post' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4>consulter un post </h4> <span>Consulter les performances d'un post, like et commentaires <span></div> </a>
+        <a href="{% url 'post' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt=""><div><h4> consulter chaque post </h4> <span>Consulter les performances de chaque post juste en cliquant sur l'image du post</span></div></a>
+        <a ><img src="{% static 'img/icons8-commentaire-50.png' %}" alt=""> <div><h4> consulter les commentaires</h4> Cliquer sur l'image ci-dessous pour consulter les performances de chaque commentaires, vous pouvez supprimer ou modifier un commentaire </span></div> </a>
+    
+</div>   
+<div class="post_form">
+    <form method="post" id="form" action="{% url 'post_form' %}" enctype="multipart/form-data">
+        <h3> Publier le post </h3>
+        {% csrf_token %}
+        <div class="form-div">
+            <label> title </label> {{form.title}}
+        </div>
+        <div class="form-div">
+            <label> image </label> {{form.image}}
+        </div>
+        <div class="form-div">
+            <label> bio </label> {{form.bio}}
+        </div>
+        <div class="form-div">
+            <label> categorie </label> {{form.categorie}}
+        </div>
+        <div class="button">
+            <button type="submit">publier  </button>
+        </div>
+    </form>
+
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% else %}
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <title>Profil utilisateur</title>
+</head>
+<body>
+  <section class="side" id="side">
+    <h1 class="tete"><img src="{% static  'img/icons8-compte-50 (5).png' %}"> Profil</h1>
+    <ul>
+        <li ><a href="{% url 'profile' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt="">dashboard</a></li>
+        <li  ><a href="{% url 'reservation_client' %}"><img src="{% static 'img/icons8-table-de-restaurant-50.png' %}" alt="">Reservation </a></li>
+        <li ><a href="{% url 'messagerie' %}"><img src="{% static 'img/20173.png' %}" alt="">messagerie</a></li>
+        <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
+{% if profile.compte.name == 'mannequin' %}
+<li ><a href="{% url 'post_form_personnel'  %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
+<li ><a href="{% url 'post_personnel' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
+{% endif %}
+        <li ><a href="{% url 'logout_view'  %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+    </ul>
+  </section>
+  <section class="nav-bar">
+    <div class="toggle" id="toggle"></div>
+    <nav class="">
+        <div class="infos">
+            <span> {{user.username}} </span>
+            <span> {{user.email}} </span>
+        </div>
+
+       <div class="profil">
+        <img src="{{profile.image.url}}"> {% if notifs %}
+        <a href="">
+            <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
+            <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
+        </a> {% endif %}
+    </div>
+   
+        <a href="{% url 'home' %}" class="link">visiter le site</a>
+    </nav>
+    
+  </section>
+ <aside class="aside">
+<div class="nav">
+    <a href="{% url 'post_personnel' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt=""><div><h4>consulter un post </h4> <span>Consulter les performances d'un post, like et commentaires <span></div> </a>
+        <a href="{% url 'post_personnel' %}"><img src="{% static 'img/icons8-disposition-du-tableau-de-bord-48 (1).png' %}" alt=""><div><h4> consulter chaque post </h4> <span>Consulter les performances de chaque post juste en cliquant sur l'image du post</span></div></a>
+        <a ><img src="{% static 'img/icons8-commentaire-50.png' %}" alt=""> <div><h4> consulter les commentaires</h4> Cliquer sur l'image ci-dessous pour consulter les performances de chaque commentaires, vous pouvez supprimer ou modifier un commentaire </span></div> </a>
+    
+</div>   
+<div class="post_form">
+    <form method="post" id="form" action="{% url 'post_form_personnel' %}" enctype="multipart/form-data">
+        <h3> Publier le post </h3>
+        {% csrf_token %}
+        <div class="form-div">
+            <label> title </label> {{form.title}}
+        </div>
+        <div class="form-div">
+            <label> image </label> {{form.image}}
+        </div>
+        <div class="form-div">
+            <label> bio </label> {{form.bio}}
+        </div>
+       
+        <div class="button">
+            <button type="submit">publier  </button>
+        </div>
+    </form>
+
+</div>
+</aside>
+<script>
+  var menu = document.querySelector('.side')
+  var small_menu = document.querySelector('.toggle')
+  small_menu.onclick = function(){
+    small_menu.classList.toggle('active');
+    menu.classList.toggle('responsive')
+  }
+</script>
+</body>
+</html>
+{% endif %}
