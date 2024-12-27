@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/log.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/signups.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_moid.css' %}">
     <title>Sign up</title>
 </head>
 <body>
@@ -47,7 +48,7 @@
                         </div>  </div> 
                         <br>
         
-                        <span class="btn">
+                        <span class="btn" id="btn">
                             <button type="submit"> créer un compte </button>
                         </span>
                 <span class="signup">vous avez déjà un compte ? <a href="{% url 'login' %}">se connecter</a></span>

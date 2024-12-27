@@ -1,0 +1,14 @@
+.small-login{
+    margin-top: 0;padding: 10px 80px;font-size:11px; border-radius: 15px; box-shadow: 0 0 3px 0 black;height: 10px;
+}
+
+@media(max-width:946px){
+    .small-login{
+        padding: 10px 20px;
+        width: 290px;
+    }
+    #btn button {
+
+        width: 200px;
+    }
+}

@@ -18,8 +18,6 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None :
                 auth_login(request, user)
-                messages.success(request, "connextion reussie")
-                print(messages.success)
                 return redirect ('profile')
             else :
                 return  HttpResponseRedirect('erreur de username ou mot de passe')

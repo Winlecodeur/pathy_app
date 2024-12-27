@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/agenda.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/txt.css' %}">
     <title>Profil utilisateur</title>
 </head>
 <body>
@@ -23,7 +24,7 @@
         <li ><a href="{% url 'edit_profil' %}"><img src="{% static 'img/informations.png' %}" alt="">modifier vos informations</a></li>
         <li ><a href="{% url 'add' %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
         <li ><a href="{% url 'post' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
-        <li ><a href="{% url 'login' %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+        <li ><a href="{% url 'logout_view' %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
     </ul>
   </section>
   <section class="nav-bar">
@@ -33,15 +34,15 @@
             <span> {{user.username}} </span>
             <span> {{user.email}} </span>
         </div>
-        {% if natifs %}
+       
         <div class="profil">
-         <img src="{{profile.image.url}}">
+         <img src="{{profile.image.url}}"> {% if natifs %}
          <a href="">
              <a href="{% url 'notif' %}"><span>  {{notifs.count}} </span></a>
              <img src="{% static 'img/icons8-rappels-de-rendez-vous-24.png' %}">
-         </a>
+         </a>{% endif %}
      </div>
-     {% endif %}
+     
         <a href="{% url 'home' %}" class="link">visiter le site</a>
     </nav>
     
@@ -93,6 +94,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/agenda.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/txt.css' %}">
     <title>Profil utilisateur</title>
 </head>
 <body>
@@ -107,7 +109,7 @@
 <li ><a href="{% url 'post_form_personnel'  %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
 <li ><a href="{% url 'post_personnel' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
 {% endif %}
-        <li ><a href="{% url 'login'  %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+        <li ><a href="{% url 'logout_view'  %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
     </ul>
   </section>
   <section class="nav-bar">

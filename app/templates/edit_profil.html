@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/txt.css' %}">
     <title>Profil utilisateur</title>
 </head>
 <body>
@@ -128,6 +129,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/adm.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/post_modif.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/txt.css' %}">
     <title>Profil utilisateur</title>
 </head>
 <body>
@@ -142,7 +144,7 @@
   <li ><a href="{% url 'post_form_personnel'  %}"><img src="{% static 'img/icons8-ajouter-50 (2).png' %}" alt="">Ajouter un post</a></li>
   <li ><a href="{% url 'post_personnel' %}"><img src="{% static 'img/icons8-boutique-en-ligne-50 (1).png' %}" alt="">performances</a></li>
   {% endif %}
-        <li ><a href="{% url 'login'  %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
+        <li ><a href="{% url 'logout_view'  %}" class="logout"><img src="{% static  'img/icons8-déconnexion-arrondi-50.png' %}" alt="">logout</a></li>
     </ul>
   </section>
   <section class="nav-bar">
