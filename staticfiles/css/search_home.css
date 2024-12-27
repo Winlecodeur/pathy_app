@@ -1,0 +1,7 @@
+@media(max-width:1000px){
+    .post-img1 nav aside {
+        display: grid;
+        justify-content: center;
+        place-items: center;
+    }
+}

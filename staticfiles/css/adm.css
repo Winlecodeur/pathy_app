@@ -1,0 +1,886 @@
+/* noter qu'ici est le css de toute l'administration, verifier le debut est la fin decahque css numeroté
+1.superuser.html 2.admin.html 3.search_commande.html 4.admin_detail.html 5.edit_profil +  static.html
+6.favoris.html 7.commande_client.html 8.boutique.html 9.boutique_modif.html 10.boutique_detail.html
+
+*/
+/* le debut du css du profil_superuser  avec superuser.html */
+body{
+    background-color: rgb(231, 230, 230);
+}
+.p-gain{
+    color: green;
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 5em;
+}
+#sac{
+    padding-top: 4.5em;
+}
+.side {
+    width: 250px;
+    height: 100%;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    background: white;
+    position: fixed;
+}
+.side ul {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 0;
+    left: 0;
+}
+.side  img {
+    width: 1em;
+    height: 0.9em;
+    margin-right: 0.4em;
+}
+.side li {
+    margin-left: 6px;
+    list-style: none;
+    height: 30px;
+    padding: 4px;
+}
+
+.side li a{
+    color: rgb(0, 89, 255);
+    
+   
+}
+.side li a {
+    text-decoration: none;
+    color: black;
+    list-style: none;
+    width: 100%;
+    height: 30px;
+    background: white;
+    border-radius: 48px ;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+.side li a:hover{
+    color: #264653;
+    font-weight:700;
+    border-radius: 35px;
+    box-shadow: 0 0 4px 0 black;
+}
+.side li a:focus{
+    box-shadow: 0 0 4px 0 black;
+}
+ .side li .logout {
+    color: red;
+    font-weight: 400;
+}
+.side li .logout{
+    margin-top: 6em;
+}
+.side li .logout:hover{
+    color: red;
+    font-weight: 700;
+}
+.tete {
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    color: #264653;
+    margin: 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    align-content: baseline;
+}
+.tete-img {
+    padding-top: 0.5em;
+    margin-right: 0;
+    
+}
+.nav-bar nav {
+    display: flex;
+    position: relative;
+    padding: 0 24px;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 700px;
+    
+}
+.profil img {
+    width: 2em;
+    height: 2em;
+    border-radius:45px;
+}
+.nav-bar{
+    position: relative;
+    left: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    background-color: white;
+    top: 0%;
+    left: 0;
+    position: absolute;
+}
+.profil a {
+    text-decoration: none;
+    color: white;
+}
+.profil img {
+    position: relative;
+}
+.profil span{
+    padding: 0 5px;
+    background-color: red;
+    border: 2px solid white;
+    position: absolute;
+    font-weight:700;
+    z-index: 50;
+    border-radius: 50%;
+}
+.link{
+    color:black;
+}
+.aside{
+    position: relative;
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10%;
+}
+.nav a {
+    text-decoration: none;
+    color: black;
+}
+.nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-left: 8%;
+}
+.nav a {
+    border-radius: 20px;
+    width: 20em;
+    height: 10em;
+  
+    display: flex;
+    background-color: white;
+    
+}
+.nav a span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+}
+.nav img {
+    width: 3.5em;
+    height: 3.4em;
+    padding-top: 3em;
+}
+.nav a h4{
+    display: flex;
+    justify-content: center;
+}
+.pub{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    place-items: center;
+    margin-top: 3em;
+}
+.pub-produit{
+    width: 400px;
+    max-width: 400px;
+    height: 400px;
+    max-height: 400px;
+    display: grid;
+    border-radius: 10px;
+    margin-left: 25%;
+
+    background-color: white;
+}
+.pub-produit a {
+    text-decoration: none;
+    color: black;
+}
+.pub-produit a {
+    height: 80px;
+    overflow: hidden;
+    word-break: keep-all;
+}
+.produit {
+    margin-left: 1em;
+    display: flex;
+    justify-content: baseline;
+    align-items: baseline;
+
+    
+}
+.produit img{
+    width: 1.5em;
+    height: 1.4em;
+    border-radius: 45px;
+}
+.pub h4 {
+    display: flex;
+    justify-content: center;
+}
+.str{
+    display: flex;
+    justify-content: baseline;
+}
+#img {
+    border-radius: 45px;
+}
+.produit strong {
+    font-size: 1em;
+    margin-left: 1em;
+}
+.toggle{
+    display:none
+}
+
+@media(max-width:1046px){
+    .side{
+        display: none;
+        
+    }
+    
+    .toggle{
+        position: relative;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2%;
+    }
+    .side h1  {
+        line-height: 0%;
+    }
+    .tete{
+        position: absolute;
+        line-height: 0%;
+    }
+    .side ul{
+        margin-top: 40px;
+    }
+    .side li .logout {
+        margin-top: 0.2em;
+    }
+    .toggle::before{
+        position: absolute;
+        content: '';
+        background-color: #264653;
+        width: 30px;
+        height: 3px;
+        box-shadow: 0  10px 0  #264653;
+        transition: 0.5s;
+        transform: translateY(-10px);
+    }
+    .toggle.active::before{
+        transform: rotate(135deg) translateY(0);
+        box-shadow: 0 0 0#264653;
+    }
+    .toggle::after{
+        content: '';
+        background-color: #264653;
+        width: 25px;
+        height: 3px;
+        transform: translateY(10px);
+    }
+    .toggle.active::after{
+        transform: rotate(-135deg) translateY(0);
+    }
+    .side.responsive {
+        width: 250px;
+        height: 100%;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        background: white;
+        position: absolute;
+        display: grid;
+        margin-top: 8%;
+    }
+    .aside{
+        width: 100%;
+        place-items: center;
+        margin-top: 15%;
+    }
+    .nav{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin-left: 0;
+        justify-content: center;
+    }
+    .pub{
+        grid-template-columns: repeat(1,1fr);
+        margin-left: 0;
+        gap: 20px;
+    }
+    .pub-produit{
+        margin-left: 0;
+    }
+  /* la fin  du css du profil_user */
+
+  /* le debut du css du admin_profil avec admin.html */
+}
+body {
+    display: grid;
+    justify-content: center;
+}
+body table tr td {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    color: white;
+    background-color: #333;
+    position: fixed;
+    margin-top: 0;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+}
+.img img {
+    width: 2m;
+    height: 2em;
+    border-radius: 45px;
+}
+.home a {
+    color: white;
+}
+.form1{
+    display: flex;
+    justify-content: center;
+}
+.form1 input{
+    border-radius: 35px 0 0 35px;
+    border: 2px solid white;
+    width: 140px;
+    margin-left: 1em;
+}
+.form1 button img {
+    width: 1em;
+    height: 1em;
+}
+.form1 button {
+    outline: none;
+    border-radius:  0 35px  35px 0;
+    border: none;
+    background-color: white;
+}
+.graphique {
+    margin-top: 3em;
+    text-decoration: none;
+    display: grid;
+    place-items: center;
+}
+.graphique img {
+    border-radius: 30px;
+    width: 30em;
+    height: 15em;
+}
+.graphique span {
+    border-radius: 30px;
+    margin-top: 1em;
+    padding: 10px 50px;
+    color: black;
+    background-color: white;
+
+}
+body h2 {
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.detail {
+    color: black;
+    padding: 10px 80px;
+    background-color:white;
+    font-size: 0.7em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    border-radius: 10px;
+}
+body table tr{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    box-shadow:  0 1px 0 black;
+}
+.info-th{
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    place-content: center;
+    align-content: center;
+}
+.wait {
+    color: red;
+    font-weight: 700;
+}
+.completed{
+    color: green;
+    font-weight: 700;
+}
+/* .rouge est une balise du search_commande.html , ce html utilise le meme fichier aussi pour faciliter le developpement */
+.rouge{
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+@media (max-width:946px){
+    .form1 input {
+        width: 80px;
+    }
+    body table{
+        margin-left: auto;
+    }
+    header h1 {
+        font-size: 0.8em;
+    }
+    .graphique img {
+        width: 20em;
+        height: auto;
+        max-width: auto;
+    }
+    body table tr{
+        font-size: 0.8em;
+    }
+    .detail {
+        padding: 7px 30px;
+    }
+    .wait{
+        font-size: 0.8em;
+    }
+    .completed{
+        font-size: 0.8em;
+    }
+}
+/* la fin du css de admin_profil avec admin.css */
+
+/* le debut du css pour admin_detail avec admin_detail.html */
+
+.media img {
+    width: 3em;
+    height: 2.9em;
+    border-radius: 30px;
+}
+.info-gn{
+    display: grid;
+    justify-content: center;
+    margin-left: 20%;
+}
+.medias {
+    display: grid;
+    grid-template-columns: repeat(1);
+    justify-content: center;
+    align-items: baseline;
+    align-content: baseline;
+    width: 65em;
+    max-width: 65em;
+    height: 10em;
+    max-height: 10em;
+    overflow: auto;
+}
+.icone{
+    width: 1em;
+    height: 1em;
+}
+.information{
+    color: rgb(10, 8, 8);
+    box-shadow: 0 1px 0 black;
+}
+.confirm {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.img{
+    width: 10em;
+    display: flex;
+    justify-content: center;
+}
+.medias  h3{
+    width: 10em;
+    display: flex;
+    justify-content: center;
+}
+.media {
+    display: flex;
+    justify-content: center;
+}
+.en-tete{
+    display: flex;
+    justify-content: space-around;
+}
+.total {
+    font-size: 1.6em;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    box-shadow: 0 1px 2px black ;
+}
+@media (max-width:946px){
+    .info-gn{
+        margin-left: 2%;
+    }
+    .medias {
+        width: auto;
+        height: auto;
+        max-width: auto;
+    }
+    .medias h3 {
+        width: 6em;
+    }
+    .img {
+        width: 6em;
+    }
+}
+/* la fin du css d'admin_detail avec admin_detail.html*/
+
+/* le debut du css d'edit_profil.html */
+
+.edit{
+    margin-top: 10%;
+    display: grid;
+    justify-content: center;
+}
+.form-edit{
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    display:grid;
+    justify-content: center;
+}
+.form-edit label{
+    font-size: 0.7em;
+}
+.form-edit label img {
+    width: 1em;
+    height: 1em;
+   border-radius: 45px 0 0 45px;
+}
+.form-edit p {
+
+    font-size: 0.5em;
+}
+.form-edit input{
+    width: 300px;
+}
+.label{
+    
+    margin-top: 1em;
+    display: flex;
+    justify-content: baseline;
+}
+.form-edit button {
+    margin-top: 1em;
+    background-color: white;
+    border: 2px solid rgb(0, 89, 255);
+    padding: 10px 200px;
+    border-radius: 45px;
+}
+/* static.html */
+#monthlyOrdersChart{
+    width:600px;
+}
+#yearlyOrdersChart{
+    width:600px;
+}
+
+@media(max-width:946px){
+    #monthlyOrdersChart{
+        width:400px;
+    }
+    #yearlyOrdersChart{
+        width:400px;
+    }
+    /* fin de static.html */
+    .form-edit {
+        font-size: 1.0em;
+    }
+    .form-edit button{
+        font-size:0.6em;
+        padding:10px 140px;
+    }
+}
+    
+/* la fin t du css d'edit_profil.html */
+
+/* le debut de favoris.html */
+.produit-a img{
+    position: inherit;
+}
+.client-pub{
+    
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.a-panier{
+    box-shadow: 0 0 8px black;
+    position: absolute;
+    padding: 20px 10px;
+    background-color: rgb(1, 0,48);
+    border-radius: 0 35px 35px 0;
+}
+#panier{
+    padding-top: 1.5em;
+    width: 1.2em;
+    height: 1.1em;
+}
+.produit-client{
+    width: 15em;
+    height: 14em;
+}
+.produit-client a {
+    text-decoration: none;
+    color: black;
+}
+.produit-client #img{
+    width: 1em;
+    height: 1em;
+    
+}
+.produit-client .prix{
+    font-size: 0.8em;
+    position: absolute;
+    color: white;
+    text-shadow: #333 0  0 10px;
+    font-weight: 700;
+    max-width: 30px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+.produit-client  img{
+    width: 100%;
+    height: 13em;
+    border-radius: 10px;
+}
+@media (max-width:946px){
+    .client-pub{
+        grid-template-columns: repeat(2,1fr);
+        gap: 0px;
+        margin-left: 1%;
+    }
+    .produit-client img{
+        width: 80%;
+        height: 10em;
+    }
+}
+/* la fin de favoris.html */
+/* debut de commande_client.html */
+.depense{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    width:250px;
+    font-size: 1.3em;
+    padding: 10px 30px;
+    background-color: green;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.depense span{
+
+    margin-left: 1em;
+}
+/* la fin de commande_client.html*/
+
+/* le debut de boutique.html */
+.pub-stock{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    margin-left: 15%;
+    margin-top: 7%;
+    gap: 30px;
+}
+.pub-boutique{
+    background-color: white;
+    width: 450px;
+    max-width: 450px;
+    height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius:15px;
+
+}
+.pub-boutique h4{
+    display: flex;
+    justify-content: center;
+}
+.pub-boutique .a-produit {
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+.produit-boutique{
+    display: flex;
+    box-shadow: 0 0.5px 0 black;
+    margin-bottom: 0.5em;
+    padding: 1em;
+}
+.pub-boutique img{
+    width: 2em;
+    height: 1.8em;
+    border-radius: 8px;
+}
+#img-boutique{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 0px;
+}
+.span-boutique{
+    display: flex;
+}
+.produit-infos{
+    align-items: baseline;
+    justify-content: baseline;
+    display: flex;
+    gap: 20px;
+}
+.strong-produit{
+    padding: 10px 30px;
+    width: 70px;
+}
+.strong-produit_2{
+    padding: 10px 30px;
+    font-size: 0.8em;
+    width: 70px;
+}
+.corbeil-boutique{
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+.corbeil-boutique img{
+    width: 1em;
+    height: 1em;
+}
+.modif-boutique{
+    background-color: rgb(0, 89, 255);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+.str-boutique{
+    background-color: rgb(167, 197, 253);
+    padding: 5px 10px;
+    border-radius: 8px;
+    width: 110px;
+    display:flex;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.str-boutique-span{
+    margin-right: 0.4em;
+    margin-left: 0.1em;
+    font-size: 0.9em;
+    width: 20px;
+}
+@media(max-width){
+    .pub-stock{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+/* la fin  de boutique.html */
+
+/* le debut de boutique_modif.html */
+.boutique-form-div{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content: center;
+    font-size: 1.4em;
+    gap: 20px;
+}
+.boutique-form button {
+    border: 1px solid rgb(0, 89, 255);
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 1em;
+    padding: 10px 190px;
+    display: flex;
+    justify-content: center;
+}
+/* la fin du boutique_modif.html*/
+
+/* le debut du boutique_detail.html*/
+.boutique-detail{
+    display: flex;
+    border-radius: 45px;
+    padding: 1.5em;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.boutique-form-div{
+    font-size: 1em;
+}
+.boutique-detail img{
+    margin-top: 4em;
+    margin-right: 
+    1.5em;
+    border-radius: 30px;
+    width: 10em;
+    height: 9em;
+}
+.a-detail{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding: 10px 80px;
+    background-color: rgb(167, 197, 253);
+    border-radius: 12px;
+    margin-top: 1.5em;
+}
+/* la fin du boutique_detail.html*/
+#img-produit{
+    width: 10em;
+    height: 100%;
+    padding-top: 0;
+    border-radius: 20px;
+}
+
+.produit-strong{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+}
+.formZ{
+    display: flex;
+    justify-content: center;
+}
+.form2 input{
+    border-radius: 35px 0 0 35px;
+    border: 2px solid rgb(212, 212, 212);
+    width: 140px;
+    margin-left: 1em;
+}
+.form2 button img {
+    width: 1em;
+    height: 1em;
+}
+.form2 button {
+    outline: none;
+    border-radius:  0 35px  35px 0;
+    border: none;
+    background-color: white;
+}
+
+::-webkit-scrollbar{
+    width: 12px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #264653;
+    border-radius: 35px;
+}

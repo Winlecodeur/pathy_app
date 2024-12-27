@@ -1,0 +1,184 @@
+.nav-form {
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 6em;
+}
+.nav-form .nav-img{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.div-img img{
+    background-color: #264653;
+    padding: 20px 20px;
+    border-radius: 35px;
+}
+.nav-form form {
+    padding: 10px 10px;
+    font-family: Arial, Helvetica, sans-serif
+    ;
+}
+.nav-form h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    color: #264653;
+    font-weight: 800;
+    
+}
+.nav-form .div{
+    display: flex;
+    margin-bottom: 1em;
+    justify-content: center;
+}
+.nav-form .div label img {
+    width: 2em;
+    height: 2em;
+}
+.nav-form .div input {
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid #264653;
+    outline: none;
+}
+.nav-form .div input:focus{
+    border: 4px solid #264653;
+}
+.nav-form form {
+    display: grid;
+    justify-content: center;
+}
+.nav-form form button {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
+    color: white;
+    background-color: #264653;
+    margin-top: 1em;
+    border-radius: 35px;
+    width: 100%;
+}
+.nav-form form button:hover{
+    letter-spacing: 1px;
+}
+.nav-form form button:focus{
+    letter-spacing: 1px;
+}
+.forgot-pass {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    font-size: 12px;
+    color: rgb(0, 74, 104);
+}
+.signup{
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+.signup a {
+    color: rgb(0, 74, 104);
+    margin-left: 0.2em;
+}
+.ytb img{
+    background-color: #264653;
+    border-radius: 5px;
+    
+    padding-bottom: 0;
+}
+.icones img {
+    width: 2em;
+    height: 2em;
+}
+.icones{
+    display:flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    margin-top: 0.5em;
+    place-content: center;
+    place-items: center;
+    padding-left: 2em;
+}
+.icones a {
+    width: 4em;
+    height: 4em;
+}
+.icones a img:hover {
+    width: 2.2em;
+    height: 2.2em;
+}
+.error  {
+    margin-bottom: 0.5em;
+    width: 400px;
+    border-radius: 10px;
+    height: 100px;
+    border: 1px solid red;
+}
+.errorlist{
+    list-style-type:none;
+}
+
+.is-invalid{
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,...");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    width: auto;
+}
+
+.invalid-toolip{
+    display: none;
+    position: absolute;
+    z-index: 5;
+    width: auto;
+    padding: 0.375rem 0.75rem;
+    margin-top: 0.125rem;
+    font-size: 0.875rem;
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 0.25rem;
+}
+.is-invalid + .invalid-toolip{
+    display: block;
+}
+.nav-form .btn{
+    display: flex;justify-content: center;
+}
+@media(max-width:1000px){
+    .nav-form{
+        margin-top: 3em;
+    }
+    .nav-form .nav-img{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        justify-content: center;
+        place-items: center;
+    }
+    .nav-img .div-img img {
+        width: 50px;
+        height: 50px;
+    }
+    .nav-img h2{
+        line-height: 10px;
+        font-size:40px;
+    }
+    .nav-form button{
+        width: 320px;
+    }
+    .btn {
+        display:flex;
+        justify-content: center;
+    }
+    .icones {
+        margin-top: 2em;
+    }
+}
