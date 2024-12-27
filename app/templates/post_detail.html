@@ -37,10 +37,10 @@
            <div class="main" >
             <a class="link-a" ><img src="{% static 'img/icons8-partager-50 (1).png' %}" ></a>
             <div class="link" >
-                <a href=""><img src="{% static 'img/icons8-instagram-50 (2).png' %}" alt=""></a>
-                <a href=""><img src="{% static 'img/icons8-facebook-nouveau-50 (2).png' %}" alt=""></a>
-                <a href=""><img src="{% static 'img/icons8-whatsapp-30.png' %}" alt=""></a>
-                <a href=""><img src="{% static 'img/icons8-tiktok-24.png' %}" alt=""></a>
+                <a ><img src="{% static 'img/icons8-instagram-50 (2).png' %}" alt=""></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"><img src="{% static 'img/icons8-facebook-nouveau-50 (2).png' %}" alt=""></a>
+                <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }}" target="_blank""><img src="{% static 'img/icons8-whatsapp-30.png' %}" alt=""></a>
+                <a href><img src="{% static 'img/icons8-tiktok-24.png' %}" alt=""></a>
                </div>
            </div>
            {% for post in post.user.profil.all %}
