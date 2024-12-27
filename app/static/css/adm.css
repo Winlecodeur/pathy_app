@@ -1,4 +1,4 @@
-/* noter qu'ici est le css de toute l'administration, verifier le debut est la fin decahque css numeroté
+kin/* noter qu'ici est le css de toute l'administration, verifier le debut est la fin decahque css numeroté
 1.superuser.html 2.admin.html 3.search_commande.html 4.admin_detail.html 5.edit_profil +  static.html
 6.favoris.html 7.commande_client.html 8.boutique.html 9.boutique_modif.html 10.boutique_detail.html
 
@@ -240,6 +240,12 @@ body{
 }
 
 @media(max-width:1046px){
+.link{
+font-size:10px
+}
+.infos span {
+font-size:10px
+}
     .side{
         display: none;
         
