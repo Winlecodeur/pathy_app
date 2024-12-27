@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    region: oregon  # Région du déploiement (par exemple : oregon, frankfurt)
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --no-input"
+    startCommand: "gunicorn pathy_app.wsgi:application --bind 0.0.0.0:$PORT"
+    plan: free  # Plan Render (free, starter, etc.)
+    runtime: python3
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        sync: false  # Ajoutez la clé via le tableau de bord Render
+      - key: DATABASE_URL
+        sync: false  # Ajoutez la variable via le tableau de bord Render
