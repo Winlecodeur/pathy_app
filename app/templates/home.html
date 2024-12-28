@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<meta name="pathy design" content="application web de mannequin et photos ">
+<meta name="pathy y" content="PATHY DESIGN, pathy design">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="{% static 'css/homes.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home_post.css' %}">
@@ -149,6 +151,18 @@
     <small class="small"> <span> &copy;  </span> created by win alfani technology </small> 
 </footer>
 <script src="{% static 'js/index.js' %}"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://votresite.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://votresite.com/recherche?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 </body>
 </html>
 {% else %}
@@ -306,6 +320,18 @@
     <small class="small"> <span> &copy;  </span> created by win alfani technology </small> 
 </footer>
 <script src="{% static 'js/homes.js' %}"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://votresite.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://votresite.com/recherche?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 </body>
 </html>
 {% endif %}
