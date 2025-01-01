@@ -1,4 +1,4 @@
-{% if user.is_superuser %}
+{% if request.user.is_superuser %}
 <!DOCTYPE html>{% load static %}
 <html lang="en">
 <head>
