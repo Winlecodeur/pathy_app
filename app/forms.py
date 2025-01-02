@@ -17,8 +17,8 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['image', 'contry','number', 'sex','state','birth','bio', 'adress', 'compte','facebook','whatsapp','instagram']
         widgets = {
-            'birth' : forms.DateInput(attrs={
-                'type' : 'date-local',
+            'birth' : forms.DateTimeInput(attrs={
+                'type' : 'datetime-local',
                 'class' : 'form-control'
             })
         }
