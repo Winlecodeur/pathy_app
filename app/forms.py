@@ -16,6 +16,12 @@ class ProfileForm(forms.ModelForm):
     class Meta :
         model = Profile
         fields = ['image', 'contry','number', 'sex','state','birth','bio', 'adress', 'compte','facebook','whatsapp','instagram']
+        widgets = {
+            'birth' : forms.DateInput(attrs={
+                'type' : 'date-local',
+                'class' : 'form-control'
+            })
+        }
 
 
 class PostForm(forms.ModelForm):
